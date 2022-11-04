@@ -1,18 +1,16 @@
-<div>
+<div class="details-wrapper">
     <p *ngIf="!userDetails">Incorrect user ID!</p>
-    <div *ngIf="userDetails">
-            <h1>Welcome back user <span>{{userDetails.name[0]}}</span></h1>
-            <div>
-                <p>Initials: {{userDetails.name[0]}}</p>
-                <p>Name: {{userDetails.name}}</p>
-                <p>Adress: {{userDetails.address.street}} {{userDetails.address.suite}}</p>
-                <p>City: {{userDetails.address.city}}</p>
-            <div>
-                <button (click)="changePage(-1)">Previous page</button>
-                <div *ngFor = "let album of userAlbums">
-                    <a [routerLink]="['/user', userDetails.id,'album', album.id]">{{album.title}}</a>
-                </div>
-                <button (click)="changePage(1)">Next page</button>
+    <div *ngIf="userDetails" class="">
+        <h1 class="welcome">Welcome back user <span>{{userInitials}}.</span></h1>
+        <div class="wrapper">
+            <ul class="user-data">
+                <li class="user-data-initials">Initials: {{userInitials}}.</li>
+                <li>Name: {{userDetails.name}}</li>
+                <li>Adress: {{userDetails.address.street}} {{userDetails.address.suite}}</li>
+                <li>City: {{userDetails.address.city}}</li>
+            </ul>
+            <div *ngFor = "let album of userAlbums">
+                <a [routerLink]="['/user', userDetails.id,'album', album.id]">{{album.title}}</a>
             </div>
         </div>
     </div>

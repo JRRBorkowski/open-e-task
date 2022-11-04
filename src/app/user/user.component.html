@@ -1,6 +1,7 @@
-
-<form> 
-    <p>Please select user</p>
-    <input type="text" #userIdInput>
-</form>
-<button (click)="onUserSelection(userIdInput.value)">Search user</button>
+<div class="user-selection">
+    <div>
+        <h1 class="user-selection-title">Please select user</h1>
+    <input type="text" #userIdInput class="user-selection-input">
+    <button (click)="onUserSelection(userIdInput.value)">Search user</button>
+    </div>
+</div>

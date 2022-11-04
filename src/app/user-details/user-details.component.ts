@@ -15,6 +15,7 @@ export class UserDetailsComponent implements OnInit {
   userAlbums: Album[] | undefined;
 
   pageNumber: number = 0;
+  userInitials: string | undefined;
 
   constructor(private route: ActivatedRoute, private appService: AppService) { }
 
@@ -23,6 +24,7 @@ export class UserDetailsComponent implements OnInit {
     const idFromRouteParams = Number(routeParams.get('userId'));
     this.appService.getUserData(idFromRouteParams).subscribe((resultIdData) => {
       this.userDetails = resultIdData;
+      this.userInitials = this.userDetails?.name.match(/[A-Z]/g)?.join('.');
     })
     this.appService.getUserAlbums(idFromRouteParams, this.pageNumber, 3).subscribe((resultAlbumData) => {
       this.userAlbums = resultAlbumData;

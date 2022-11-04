@@ -1,0 +1,11 @@
+.user-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+
+    .user-selection-title {
+        color: brown;
+        padding: 30px;
+    }
+}
