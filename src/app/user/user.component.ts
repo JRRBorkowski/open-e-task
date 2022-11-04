@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs'
 import { AppService } from '../app.service';
+import { Router } from '@angular/router';
 import { User } from './user';
 
 @Component({
@@ -12,14 +13,22 @@ export class UserComponent implements OnInit {
 
   allUsers!: Observable<User[]>
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
     this.allUsers = this.appService.getAllUsers();
   }
 
-  onUserSelection() {
-    console.log(this.allUsers)
+  onUserSelection(selectedUserId: string) {
+    this.allUsers.subscribe((resultAllUsers) => {
+      console.log(resultAllUsers)
+      const parsedValue = Number(selectedUserId);
+      if (resultAllUsers.find(element => element.id === parsedValue)) {
+        this.router.navigate(['user',parsedValue])
+        console.log(parsedValue)
+      } else alert("User ID not found!")
+    }
+    )
   }
 
 }

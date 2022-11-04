@@ -1,0 +1,7 @@
+<p>{{userDetails?.id}}</p>
+
+<div *ngFor = "let album of userAlbums"> 
+    <a [routerLink]="['/user', userDetails?.id,'album', album.id]">{{album.title}}</a>
+</div>
+
+<router-outlet></router-outlet>

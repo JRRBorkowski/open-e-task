@@ -1,0 +1,8 @@
+<p>AAAAAAAAAAAAA</p>
+<div *ngFor="let userPicture of userPictures">
+    <button (click)="addPictureToSelect(userPicture)">{{userPicture.title}}</button>
+</div>
+
+<div *ngFor="let selectedPicture of selectedPictures">
+    <img src="{{selectedPicture.url}}" class="">
+</div>
