@@ -1,7 +1,20 @@
-<p>{{userDetails?.id}}</p>
-
-<div *ngFor = "let album of userAlbums"> 
-    <a [routerLink]="['/user', userDetails?.id,'album', album.id]">{{album.title}}</a>
+<div>
+    <p *ngIf="!userDetails">Incorrect user ID!</p>
+    <div *ngIf="userDetails">
+            <h1>Welcome back user <span>{{userDetails.name[0]}}</span></h1>
+            <div>
+                <p>Initials: {{userDetails.name[0]}}</p>
+                <p>Name: {{userDetails.name}}</p>
+                <p>Adress: {{userDetails.address.street}} {{userDetails.address.suite}}</p>
+                <p>City: {{userDetails.address.city}}</p>
+            <div>
+                <button (click)="changePage(-1)">Previous page</button>
+                <div *ngFor = "let album of userAlbums">
+                    <a [routerLink]="['/user', userDetails.id,'album', album.id]">{{album.title}}</a>
+                </div>
+                <button (click)="changePage(1)">Next page</button>
+            </div>
+        </div>
+    </div>
 </div>
-
 <router-outlet></router-outlet>

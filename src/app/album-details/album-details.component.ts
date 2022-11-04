@@ -34,8 +34,9 @@ export class AlbumDetailsComponent implements OnInit {
 
   highlightPicture(selectedPicture: AlbumPictures) {
     if (selectedPicture === this.highlightedPicture) {
-      this.selectedPictures.filter(picture => picture !== this.highlightedPicture);
+      this.selectedPictures.filter(picture => picture != this.highlightedPicture);
       this.highlightedPicture = undefined;
+      console.log(selectedPicture)
     } else {
       this.highlightedPicture = selectedPicture;
     }

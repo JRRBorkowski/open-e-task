@@ -1,8 +1,12 @@
-<p>AAAAAAAAAAAAA</p>
-<div *ngFor="let userPicture of userPictures">
-    <button (click)="addPictureToSelect(userPicture)">{{userPicture.title}}</button>
-</div>
+<div>
+    <p>Album photos</p>
+    <button (click)="changePage(-1)">Previous photos</button>
+    <div *ngFor="let userPicture of userPictures">
+        <p (click)="addPictureToSelect(userPicture)" class="photo-name">{{userPicture.title}}</p>
+    </div>
+    <button (click)="changePage(1)">Next photos</button>
 
-<div *ngFor="let selectedPicture of selectedPictures">
-    <img src="{{selectedPicture.url}}" class="">
+    <div *ngFor="let selectedPicture of selectedPictures">
+        <img src="{{selectedPicture.url}}" class="" (click)="highlightPicture(selectedPicture)">
+    </div>
 </div>

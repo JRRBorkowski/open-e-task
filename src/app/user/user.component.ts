@@ -26,7 +26,14 @@ export class UserComponent implements OnInit {
       if (resultAllUsers.find(element => element.id === parsedValue)) {
         this.router.navigate(['user',parsedValue])
         console.log(parsedValue)
-      } else alert("User ID not found!")
+      } if (parsedValue === 0) {
+        alert("User ID cannot be 0!")
+      } if (parsedValue < 0) {
+        alert("User ID cannot be smaller than 0")
+      } if (!parsedValue) {
+        alert("Incorrect user ID!")
+        console.log(parsedValue)
+      }
     }
     )
   }

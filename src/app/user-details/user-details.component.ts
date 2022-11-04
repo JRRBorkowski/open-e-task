@@ -14,6 +14,8 @@ export class UserDetailsComponent implements OnInit {
   userDetails: User | undefined;
   userAlbums: Album[] | undefined;
 
+  pageNumber: number = 0;
+
   constructor(private route: ActivatedRoute, private appService: AppService) { }
 
   ngOnInit(): void {
@@ -22,7 +24,17 @@ export class UserDetailsComponent implements OnInit {
     this.appService.getUserData(idFromRouteParams).subscribe((resultIdData) => {
       this.userDetails = resultIdData;
     })
-    this.appService.getUserAlbums(idFromRouteParams, 0, 3).subscribe((resultAlbumData) => {
+    this.appService.getUserAlbums(idFromRouteParams, this.pageNumber, 3).subscribe((resultAlbumData) => {
+      this.userAlbums = resultAlbumData;
+    })
+  }
+  
+  changePage(pageNumberDelta: number) {
+    this.pageNumber = this.pageNumber + pageNumberDelta;
+
+    const routeParams = this.route.snapshot.paramMap;
+    const idFromRouteParams = Number(routeParams.get('albumId'));
+    this.appService.getUserAlbums(idFromRouteParams, this.pageNumber * 3, 3).subscribe((resultAlbumData) => {
       this.userAlbums = resultAlbumData;
     })
   }
